@@ -490,13 +490,17 @@
           <p>اكتب القرار الذي يشغل الفريق الآن. سنساعدك على تحويله إلى سؤال أوضح يمكن تحليله قبل الالتزام.</p>
           <div class="sharp-line">مثال: هل نبني؟ هل نغيّر الشريحة؟ هل نستثمر؟ هل نوقف هذا المسار؟</div>
         </div>
-        <form class="form-card reveal" onsubmit="sendEmail(event)">
+        <form class="form-card reveal" name="decision-diagnostic" method="POST" data-netlify="true" netlify-honeypot="bot-field">
           <h3>أرسل القرار</h3>
+          <input type="hidden" name="form-name" value="decision-diagnostic" />
+          <p style="display:none;">
+            <label>لا تملأ هذا الحقل: <input name="bot-field" /></label>
+          </p>
           <div class="form-grid">
-            <div class="field"><label>الاسم</label><input id="name" type="text" placeholder="اسمك" required /></div>
-            <div class="field"><label>البريد الإلكتروني</label><input id="email" type="email" placeholder="name@company.com" required /></div>
-            <div class="field full"><label>الجهة / الشركة</label><input id="company" type="text" placeholder="اسم الجهة" /></div>
-            <div class="field full"><label>ما القرار الذي تفكر فيه؟</label><textarea id="decision" placeholder="مثال: هل نبني MVP؟ هل نغيّر الشريحة؟ هل نستثمر في هذه الفرصة؟ هل نوقف هذا المسار؟" required></textarea></div>
+            <div class="field"><label>الاسم</label><input id="name" name="name" type="text" placeholder="اسمك" required /></div>
+            <div class="field"><label>البريد الإلكتروني</label><input id="email" name="email" type="email" placeholder="name@company.com" required /></div>
+            <div class="field full"><label>الجهة / الشركة</label><input id="company" name="company" type="text" placeholder="اسم الجهة" /></div>
+            <div class="field full"><label>ما القرار الذي تفكر فيه؟</label><textarea id="decision" name="decision" placeholder="مثال: هل نبني MVP؟ هل نغيّر الشريحة؟ هل نستثمر في هذه الفرصة؟ هل نوقف هذا المسار؟" required></textarea></div>
           </div>
           <button class="submit-btn" type="submit">إرسال طلب التشخيص</button>
         </form>
@@ -536,16 +540,6 @@
       });
     }, { threshold: 0.12 });
     revealEls.forEach((el, i) => { el.style.transitionDelay = `${Math.min(i * 45, 280)}ms`; observer.observe(el); });
-    function sendEmail(event) {
-      event.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const company = document.getElementById('company').value.trim();
-      const decision = document.getElementById('decision').value.trim();
-      const subject = encodeURIComponent('طلب تشخيص قرار — ذا لينس');
-      const body = encodeURIComponent(`الاسم: ${name}\nالبريد: ${email}\nالجهة: ${company}\n\nالقرار المطلوب حسمه:\n${decision}`);
-      window.location.href = `mailto:ali@thelens.work?subject=${subject}&body=${body}`;
-    }
   </script>
 </body>
 </html>
