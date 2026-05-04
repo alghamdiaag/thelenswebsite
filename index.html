@@ -243,6 +243,17 @@
     .field input:focus, .field textarea:focus { border-color: var(--blue); background: var(--white); box-shadow: 0 0 0 4px rgba(42,79,246,.10); }
     .submit-btn { margin-top: 20px; border: 0; background: var(--brand); color: var(--white); min-height: 58px; border-radius: var(--radius-pill); padding: 0 34px; font-weight: 950; cursor: pointer; transition: transform var(--ease), box-shadow var(--ease); box-shadow: 0 14px 32px rgba(15,1,71,0.18); }
     .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 18px 44px rgba(15,1,71,0.24); }
+    .form-status {
+      display: none;
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-size: 14px;
+      font-weight: 850;
+      line-height: 1.8;
+    }
+    .form-status.success { display: block; color: #065F46; background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.22); }
+    .form-status.error { display: block; color: #991B1B; background: rgba(216,90,48,.12); border: 1px solid rgba(216,90,48,.22); }
 
     .footer { background: var(--brand); color: var(--white); padding: 76px 0 34px; position: relative; overflow: hidden; }
     .footer::before { content: ""; position: absolute; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(92,225,230,0.12), transparent 66%); left: -170px; top: -140px; }
@@ -490,7 +501,7 @@
           <p>اكتب القرار الذي يشغل الفريق الآن. سنساعدك على تحويله إلى سؤال أوضح يمكن تحليله قبل الالتزام.</p>
           <div class="sharp-line">مثال: هل نبني؟ هل نغيّر الشريحة؟ هل نستثمر؟ هل نوقف هذا المسار؟</div>
         </div>
-        <form class="form-card reveal" name="decision-diagnostic" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <form class="form-card reveal" id="decisionForm" name="decision-diagnostic" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field">
           <h3>أرسل القرار</h3>
           <input type="hidden" name="form-name" value="decision-diagnostic" />
           <p style="display:none;">
@@ -503,6 +514,7 @@
             <div class="field full"><label>ما القرار الذي تفكر فيه؟</label><textarea id="decision" name="decision" placeholder="مثال: هل نبني MVP؟ هل نغيّر الشريحة؟ هل نستثمر في هذه الفرصة؟ هل نوقف هذا المسار؟" required></textarea></div>
           </div>
           <button class="submit-btn" type="submit">إرسال طلب التشخيص</button>
+          <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
         </form>
       </div>
     </section>
@@ -540,6 +552,41 @@
       });
     }, { threshold: 0.12 });
     revealEls.forEach((el, i) => { el.style.transitionDelay = `${Math.min(i * 45, 280)}ms`; observer.observe(el); });
+
+    const decisionForm = document.getElementById('decisionForm');
+    const formStatus = document.getElementById('formStatus');
+    if (decisionForm) {
+      decisionForm.addEventListener('submit', async function (event) {
+        event.preventDefault();
+        const submitButton = decisionForm.querySelector('.submit-btn');
+        const formData = new FormData(decisionForm);
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = 'جاري الإرسال...';
+        }
+        formStatus.className = 'form-status';
+        formStatus.textContent = '';
+        try {
+          const response = await fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formData).toString()
+          });
+          if (!response.ok) throw new Error('Form submission failed');
+          decisionForm.reset();
+          formStatus.className = 'form-status success';
+          formStatus.textContent = 'تم استلام طلبك بنجاح. سنراجع القرار ونتواصل معك عبر البريد الإلكتروني.';
+        } catch (error) {
+          formStatus.className = 'form-status error';
+          formStatus.textContent = 'لم يتم إرسال الطلب. يرجى المحاولة مرة أخرى أو مراسلتنا مباشرة على ali@thelens.work.';
+        } finally {
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = 'إرسال طلب التشخيص';
+          }
+        }
+      });
+    }
   </script>
 </body>
 </html>
