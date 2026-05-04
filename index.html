@@ -70,27 +70,27 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(255, 255, 255, 0.94);
+      background: radial-gradient(circle at 18% 78%, rgba(92,225,230,0.16), transparent 34%), radial-gradient(circle at 86% 25%, rgba(42,79,246,0.18), transparent 36%), linear-gradient(135deg, #05001d 0%, #0F0147 54%, #140562 100%);
       backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(230, 234, 240, 0.9);
-      box-shadow: 0 8px 24px rgba(15, 1, 71, 0.04);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 8px 24px rgba(15, 1, 71, 0.18);
     }
     .nav { height: 96px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
     .brand { display: flex; align-items: center; gap: 14px; min-width: 210px; }
     .brand-mark { width: 74px; height: 74px; display: grid; place-items: center; border-radius: 50%; background: transparent; }
     .brand-mark img { width: 74px; height: 74px; object-fit: contain; }
     .brand-word { display: grid; gap: 0; line-height: 1.2; }
-    .brand-name { font-family: var(--font-head); font-weight: 700; font-size: 30px; color: var(--brand); }
-    .brand-sub { font-size: 10px; font-weight: 900; letter-spacing: .02em; color: var(--muted); }
-    .nav-links { display: flex; align-items: center; gap: 28px; font-size: 14px; font-weight: 850; color: #1c2430; }
+    .brand-name { font-family: var(--font-head); font-weight: 700; font-size: 30px; color: var(--white); }
+    .brand-sub { font-size: 10px; font-weight: 900; letter-spacing: .02em; color: var(--cyan); }
+    .nav-links { display: flex; align-items: center; gap: 28px; font-size: 14px; font-weight: 850; color: rgba(255,255,255,.92); }
     .nav-links a { transition: color var(--ease); }
-    .nav-links a:hover { color: var(--blue); }
-    .header-cta { height: 46px; display: inline-flex; align-items: center; justify-content: center; padding: 0 22px; border-radius: var(--radius-pill); background: var(--brand); color: var(--white); font-size: 13px; font-weight: 950; box-shadow: 0 12px 30px rgba(15,1,71,.18); }
-    .menu-btn { display: none; width: 44px; height: 44px; border: 0; background: var(--brand); border-radius: 14px; align-items: center; justify-content: center; flex-direction: column; gap: 5px; cursor: pointer; }
-    .menu-btn span { width: 20px; height: 2px; border-radius: 3px; background: var(--white); }
+    .nav-links a:hover { color: var(--cyan); }
+    .header-cta { height: 46px; display: inline-flex; align-items: center; justify-content: center; padding: 0 22px; border-radius: var(--radius-pill); background: var(--cyan); color: var(--brand); font-size: 13px; font-weight: 950; box-shadow: 0 12px 30px rgba(0,0,0,.22); }
+    .menu-btn { display: none; width: 44px; height: 44px; border: 0; background: var(--white); border-radius: 14px; align-items: center; justify-content: center; flex-direction: column; gap: 5px; cursor: pointer; }
+    .menu-btn span { width: 20px; height: 2px; border-radius: 3px; background: var(--brand); }
     .mobile-menu { display: none; padding: 0 20px 20px; gap: 12px; }
     .mobile-menu.open { display: grid; }
-    .mobile-menu a { padding: 14px 16px; border: 1px solid var(--line); border-radius: 16px; font-weight: 800; background: var(--white); }
+    .mobile-menu a { padding: 14px 16px; border: 1px solid rgba(255,255,255,.10); border-radius: 16px; font-weight: 800; background: rgba(255,255,255,.06); color: var(--white); }
 
     .hero {
       position: relative;
@@ -288,16 +288,18 @@
     }
     @media (max-width: 720px) {
       .container { width: min(100% - 28px, var(--container)); }
-      .nav { height: 88px; }
+      .nav { height: 82px; }
       .brand { gap: 10px; }
-      .brand-mark, .brand-mark img { width: 68px; height: 68px; }
-      .brand-name { font-size: 26px; }
-      .brand-sub { font-size: 9px; }
+      .brand-mark, .brand-mark img { width: 60px; height: 60px; }
+      .brand-name { font-size: 24px; }
+      .brand-sub { font-size: 8px; }
       .hero { min-height: auto; }
-      .hero-layout { padding: 64px 0 72px; }
-      .hero h1 { font-size: 39px; }
-      .hero-sub { font-size: 20px; }
-      .hero-support, .hero-small { font-size: 14px; }
+      .hero-layout { padding: 54px 0 66px; }
+      .hero-content { width: 100%; }
+      .hero h1 { font-size: 32px; line-height: 1.45; margin-bottom: 18px; letter-spacing: -0.01em; }
+      .hero-sub { font-size: 18px; line-height: 2; margin-bottom: 14px; }
+      .hero-support { font-size: 14px; line-height: 1.95; margin-bottom: 10px; }
+      .hero-small { font-size: 13px; line-height: 1.9; margin-bottom: 24px; }
       .btn { width: 100%; min-height: 56px; }
       .abstract-hero { min-height: 350px; margin-top: -10px; }
       .hero-art { min-height: 310px; }
@@ -351,15 +353,14 @@
       <div class="container hero-layout">
         <div class="hero-content reveal">
           <div class="eyebrow">ذا لينس | وضوح قبل البناء والاستثمار</div>
-          <h1>لا تبنِ MVP أو قراراً استثمارياً على افتراض لم يُختبر.</h1>
-          <p class="hero-sub">نساعد المؤسسين، المستثمرين، وفرق الابتكار في السعودية على حسم سؤال واحد قبل الالتزام: هل هذه الفرصة تستحق البناء، التمويل، التوسع، أم يجب إيقافها أو إعادة توجيهها؟</p>
-          <p class="hero-support">مذكرة قرار مركزة تكشف أين يوجد الدليل، أين تبدأ الفرضية، وما الخطوة التالية الأقل مخاطرة.</p>
-          <p class="hero-small">أغلب الهدر لا يبدأ أثناء التنفيذ، بل قبله: حين يصبح الرأي خطة، والافتراض ميزانية.</p>
+          <h1>قبل أن تبني أو تستثمر، تأكد أن السوق يعاني من مشكلة تستحق الحل.</h1>
+          <p class="hero-sub">ذا لينس تساعدك على رؤية ما وراء الفكرة: هل يوجد احتياج غير مشبع؟ هل البدائل الحالية تفشل مع العميل؟ وهل المشكلة مؤلمة بما يكفي لتبرير البناء أو التمويل أو التوسع؟ نخرج لك بمذكرة قرار تكشف الدليل، الفرضيات، والمخاطر قبل أن يتحول الحماس إلى التزام مكلف.</p>
+          <p class="hero-small">لحاضنات ومسرعات الأعمال، المستثمرين، وفرق الابتكار في الشركات التي تحتاج قرارًا أوضح قبل البناء أو التمويل أو التوسع.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#contact-form">احصل على تشخيص قرار أولي</a>
-            <a class="btn btn-secondary" href="The-Lens-Sample-Decision-Memo.pdf" download>اطلع على نموذج التقرير</a>
+            <a class="btn btn-secondary" href="The-Lens-Sample-Decision-Memo.pdf" download>اطلع على نموذج المذكرة</a>
           </div>
-          <div class="hero-note"><span></span>لا نبيع تقريراً طويلاً. نبيع قدرة أعلى على قول: نكمل، نغيّر، أو نوقف.</div>
+          <div class="hero-note"><span></span>لا نبيع مستنداً طويلاً. نبيع قدرة أعلى على قول: نكمل، نغيّر، أو نوقف.</div>
         </div>
         <div class="abstract-hero reveal" aria-hidden="true">
           <figure class="brand-art hero-art">
@@ -409,10 +410,7 @@
         <div class="center-head reveal">
           <div class="section-label">الخدمة الأساسية</div>
           <h2 class="section-title">مذكرة قرار من ذا لينس.</h2>
-          <p>مخرج تنفيذي مركز يساعدك على حسم: هل نبني؟ هل نغيّر؟ هل نواصل؟ هل نوقف؟ وما الذي يجب التحقق منه قبل الخطوة التالية.</p>
-        </div>
-        <div class="service-intro reveal">
-          العميل لا يشتري مذكرة. هو يشتري القدرة على قول: <strong>نكمل، نغيّر، أو نوقف</strong> — بثقة أعلى ومخاطرة أقل.
+          <p>مذكرة تنفيذية مركزة تساعدك على حسم: هل نبني؟ هل نغيّر؟ هل نواصل؟ هل نوقف؟ وما الذي يجب التحقق منه قبل الخطوة التالية.</p>
         </div>
         <div class="cards-3">
           <article class="service-card reveal"><div><div class="card-num">01</div><h3>ما الذي توضحه؟</h3><p>من العميل الذي يجب فهمه، ما الاحتياج الأقوى، أين يفشل البديل الحالي، وما الدليل الذي يدعم القرار.</p></div></article>
@@ -485,10 +483,10 @@
         </div>
         <div class="sample-box reveal">
           <div>
-            <h3>شاهد شكل المخرج قبل أن تبدأ.</h3>
-            <p>حمّل نموذجاً مختصراً يوضح بنية مذكرة القرار: السؤال، الفرضيات، قراءة العميل، المخاطر، والتوصية.</p>
+            <h3>شاهد شكل المذكرة</h3>
+            <p>حمّل نموذجاً مختصراً لمذكرة القرار يوضح طريقة العرض والبنية العامة للمذكرة.</p>
           </div>
-          <a class="btn btn-primary" href="The-Lens-Sample-Decision-Memo.pdf" download>اطلع على نموذج التقرير</a>
+          <a class="btn btn-primary" href="The-Lens-Sample-Decision-Memo.pdf" download>اطلع على نموذج المذكرة</a>
         </div>
       </div>
     </section>
@@ -499,7 +497,6 @@
           <div class="section-label">تواصل معنا</div>
           <h3>شاركنا القرار الذي تريد حسمه</h3>
           <p>اكتب القرار الذي يشغل الفريق الآن. سنساعدك على تحويله إلى سؤال أوضح يمكن تحليله قبل الالتزام.</p>
-          <div class="sharp-line">مثال: هل نبني؟ هل نغيّر الشريحة؟ هل نستثمر؟ هل نوقف هذا المسار؟</div>
         </div>
         <form class="form-card reveal" id="decisionForm" name="decision-diagnostic" method="POST" action="/" data-netlify="true" netlify netlify-honeypot="bot-field">
           <h3>أرسل القرار</h3>
@@ -531,7 +528,7 @@
           <p>وضوح للقرار في الشركات الناشئة والابتكار والاستثمار. نساعدك على اختبار ما يستحق الالتزام قبل أن يتحول الافتراض إلى ميزانية.</p>
         </div>
         <div><h4>روابط</h4><ul><li><a href="#about">عن ذا لينس</a></li><li><a href="#service">الخدمة</a></li><li><a href="#work">كيف نعمل</a></li><li><a href="#moments">متى تحتاجنا</a></li><li><a href="#contact-form">تواصل</a></li></ul></div>
-        <div><h4>المخرجات</h4><ul><li><a href="The-Lens-Sample-Decision-Memo.pdf" download>نموذج التقرير</a></li><li>مذكرة قرار</li><li>مسار تحقق</li></ul></div>
+        <div><h4>المخرجات</h4><ul><li><a href="The-Lens-Sample-Decision-Memo.pdf" download>نموذج المذكرة</a></li><li>مذكرة قرار</li><li>مسار تحقق</li></ul></div>
         <div><h4>تواصل</h4><ul><li>الرياض، شارع الضباب</li><li>المملكة العربية السعودية</li><li><a href="mailto:ali@thelens.work">ali@thelens.work</a></li><li><a href="tel:+966541998112">0541998112</a></li></ul></div>
       </div>
       <div class="footer-bottom"><span>© 2026 ذا لينس. جميع الحقوق محفوظة.</span><span>صُمم لمساعدة الفرق في السعودية والخليج على اتخاذ قرارات أوضح قبل الالتزام.</span></div>
