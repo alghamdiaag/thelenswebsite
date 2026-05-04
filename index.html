@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ذا لينس — اختبر قرارك قبل الالتزام</title>
+  <meta name="description" content="ذا لينس تساعد المؤسسين، المستثمرين، وفرق الابتكار على اختبار قرارات البناء والاستثمار والتوسع قبل الالتزام بوقت وميزانية أكبر." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400..700&family=Noto+Sans+Arabic:wght@100..900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --brand: #0F0147;
+      --ink: #090124;
+      --navy: #0F0147;
+      --navy-2: #16065f;
+      --blue: #2A4FF6;
+      --cyan: #5CE1E6;
+      --white: #FFFFFF;
+      --paper: #F7F9FC;
+      --paper-2: #EEF3F8;
+      --text: #050505;
+      --muted: #4B5563;
+      --line: #E6EAF0;
+      --amber: #F0B429;
+      --danger: #D85A30;
+      --green: #10B981;
+      --shadow: 0 22px 60px rgba(15, 1, 71, 0.12);
+      --shadow-soft: 0 12px 30px rgba(15, 1, 71, 0.08);
+      --radius: 28px;
+      --radius-md: 18px;
+      --radius-pill: 999px;
+      --container: 1180px;
+      --font-head: "El Messiri", serif;
+      --font-body: "Noto Sans Arabic", system-ui, sans-serif;
+      --ease: 240ms ease;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.85;
+      overflow-x: hidden;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 8% 14%, rgba(42,79,246,0.055), transparent 26%),
+        radial-gradient(circle at 90% 34%, rgba(92,225,230,0.055), transparent 28%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, input, textarea { font-family: inherit; }
+    .container { width: min(var(--container), calc(100% - 40px)); margin-inline: auto; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(230, 234, 240, 0.9);
+      box-shadow: 0 8px 24px rgba(15, 1, 71, 0.04);
+    }
+    .nav { height: 96px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 14px; min-width: 210px; }
+    .brand-mark { width: 74px; height: 74px; display: grid; place-items: center; border-radius: 50%; background: transparent; }
+    .brand-mark img { width: 74px; height: 74px; object-fit: contain; }
+    .brand-word { display: grid; gap: 0; line-height: 1.2; }
+    .brand-name { font-family: var(--font-head); font-weight: 700; font-size: 30px; color: var(--brand); }
+    .brand-sub { font-size: 10px; font-weight: 900; letter-spacing: .02em; color: var(--muted); }
+    .nav-links { display: flex; align-items: center; gap: 28px; font-size: 14px; font-weight: 850; color: #1c2430; }
+    .nav-links a { transition: color var(--ease); }
+    .nav-links a:hover { color: var(--blue); }
+    .header-cta { height: 46px; display: inline-flex; align-items: center; justify-content: center; padding: 0 22px; border-radius: var(--radius-pill); background: var(--brand); color: var(--white); font-size: 13px; font-weight: 950; box-shadow: 0 12px 30px rgba(15,1,71,.18); }
+    .menu-btn { display: none; width: 44px; height: 44px; border: 0; background: var(--brand); border-radius: 14px; align-items: center; justify-content: center; flex-direction: column; gap: 5px; cursor: pointer; }
+    .menu-btn span { width: 20px; height: 2px; border-radius: 3px; background: var(--white); }
+    .mobile-menu { display: none; padding: 0 20px 20px; gap: 12px; }
+    .mobile-menu.open { display: grid; }
+    .mobile-menu a { padding: 14px 16px; border: 1px solid var(--line); border-radius: 16px; font-weight: 800; background: var(--white); }
+
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 96px);
+      color: var(--white);
+      overflow: hidden;
+      background: radial-gradient(circle at 18% 78%, rgba(92,225,230,0.20), transparent 34%), radial-gradient(circle at 86% 25%, rgba(42,79,246,0.20), transparent 36%), linear-gradient(135deg, #05001d 0%, #0F0147 54%, #140562 100%);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: radial-gradient(circle at 55% 50%, black 0%, transparent 72%);
+      pointer-events: none;
+    }
+    .hero-layout { position: relative; z-index: 2; display: grid; grid-template-columns: 0.98fr 1.02fr; align-items: center; gap: 56px; padding: 92px 0 106px; }
+    .hero-content { width: min(760px, 100%); }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--cyan); font-size: 13px; font-weight: 950; letter-spacing: 0.02em; margin-bottom: 22px; }
+    .eyebrow::before { content: ""; width: 38px; height: 2px; background: var(--cyan); border-radius: 10px; }
+    .hero h1 { font-family: var(--font-head); font-size: clamp(42px, 6.1vw, 76px); line-height: 1.13; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 28px; max-width: 790px; }
+    .hero-sub { font-size: clamp(21px, 2.25vw, 29px); line-height: 1.75; color: rgba(255,255,255,0.90); max-width: 735px; margin-bottom: 18px; font-weight: 600; }
+    .hero-support { color: rgba(255,255,255,0.74); font-size: 16px; margin-bottom: 12px; }
+    .hero-small { color: rgba(255,255,255,0.64); font-size: 14px; margin-bottom: 34px; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-bottom: 24px; }
+    .btn { min-height: 58px; border-radius: var(--radius-pill); display: inline-flex; align-items: center; justify-content: center; padding: 0 30px; font-size: 14px; font-weight: 950; border: 1px solid transparent; transition: transform var(--ease), box-shadow var(--ease), background var(--ease), color var(--ease), border-color var(--ease); cursor: pointer; white-space: nowrap; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--cyan); color: var(--brand); box-shadow: 0 18px 46px rgba(92,225,230,0.20); }
+    .btn-secondary { background: rgba(255,255,255,.10); color: var(--white); border-color: rgba(255,255,255,.22); backdrop-filter: blur(10px); }
+    .btn-ghost { background: transparent; color: var(--white); border-color: rgba(255,255,255,.26); }
+    .hero-note { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.75); font-size: 14px; font-weight: 700; }
+    .hero-note span { width: 10px; height: 10px; background: var(--green); border-radius: 50%; box-shadow: 0 0 0 6px rgba(16,185,129,.16); }
+
+    .abstract-hero { position: relative; min-height: 560px; display: grid; place-items: center; }
+    .brand-art {
+      width: 100%;
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+    }
+    .brand-art img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-art {
+      min-height: 520px;
+      aspect-ratio: 16 / 9;
+      border-color: rgba(92,225,230,.18);
+      box-shadow: 0 32px 90px rgba(0,0,0,.28);
+    }
+    .section-art {
+      min-height: 430px;
+      aspect-ratio: 4 / 3;
+      border: 1px solid var(--line);
+      background: var(--white);
+      box-shadow: var(--shadow-soft);
+    }
+    .dark-art {
+      min-height: 440px;
+      aspect-ratio: 4 / 3;
+      border-color: rgba(92,225,230,.16);
+      background: var(--brand);
+    }
+
+    .section { padding: 96px 0; }
+    .section-white { background: var(--white); }
+    .section-light { background: linear-gradient(180deg, var(--paper), #fff); }
+    .section-dark { background: var(--brand); color: var(--white); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 62px; align-items: center; }
+    .center-head { text-align: center; width: min(850px, 100%); margin: 0 auto 44px; }
+    .section-label { display: inline-flex; align-items: center; gap: 10px; color: var(--blue); font-size: 13px; font-weight: 950; margin-bottom: 14px; }
+    .section-dark .section-label { color: var(--cyan); }
+    .section-title { font-family: var(--font-head); font-size: clamp(34px, 4.2vw, 58px); line-height: 1.22; color: var(--brand); margin-bottom: 20px; }
+    .section-dark .section-title { color: var(--white); }
+    .section-copy, .center-head p { color: var(--muted); font-size: 19px; line-height: 2; }
+    .section-dark .section-copy, .section-dark .center-head p { color: rgba(255,255,255,.74); }
+    .sharp-line { margin-top: 24px; padding: 22px 24px; border-right: 5px solid var(--cyan); background: rgba(92,225,230,.10); border-radius: 18px; font-weight: 950; color: var(--brand); }
+
+    .risk-card { padding: 34px; border-radius: var(--radius); background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow-soft); }
+    .risk-card h3 { font-family: var(--font-head); color: var(--brand); font-size: 34px; line-height: 1.35; margin-bottom: 18px; }
+    .risk-card p { color: var(--muted); font-size: 18px; }
+    .cost-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 28px; }
+    .cost-item { padding: 24px; border-radius: 22px; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow-soft); }
+    .cost-item strong { display: block; color: var(--brand); font-family: var(--font-head); font-size: 24px; margin-bottom: 8px; }
+    .cost-item span { display: block; color: var(--muted); font-size: 15px; }
+
+    .problem-visual { position: relative; min-height: 430px; border-radius: var(--radius); background: linear-gradient(145deg, #fff, #F7F9FC); border: 1px solid var(--line); box-shadow: var(--shadow-soft); overflow: hidden; }
+    .problem-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .problem-visual::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(255,255,255,.28), transparent 42%, rgba(255,255,255,.12)); }
+
+    .abstract-panel { min-height: 440px; border-radius: var(--radius); background: var(--brand); position: relative; overflow: hidden; box-shadow: var(--shadow); border: 1px solid rgba(92,225,230,.16); }
+    .abstract-panel img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .abstract-panel::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 74% 18%, rgba(92,225,230,.16), transparent 34%); }
+
+    .service-intro { width: min(930px, 100%); margin: 0 auto 30px; padding: 28px 32px; border-radius: var(--radius); background: var(--brand); color: rgba(255,255,255,.88); font-size: 21px; line-height: 2; text-align: center; box-shadow: var(--shadow); }
+    .service-intro strong { color: var(--cyan); }
+    .cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .service-card, .work-card, .why-card { padding: 30px; border-radius: var(--radius); background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow-soft); min-height: 255px; display: flex; flex-direction: column; justify-content: space-between; }
+    .service-card h3, .work-card h3, .why-card h3 { font-family: var(--font-head); color: var(--brand); font-size: 29px; line-height: 1.35; margin: 12px 0 10px; }
+    .service-card p, .work-card p, .why-card p { color: var(--muted); font-size: 16.5px; line-height: 1.95; }
+    .card-num { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 16px; background: rgba(92,225,230,.16); color: var(--brand); font-weight: 950; }
+    .service-strip { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 28px; }
+    .service-strip span { padding: 12px 18px; border-radius: var(--radius-pill); background: var(--paper); border: 1px solid var(--line); color: var(--brand); font-size: 13px; font-weight: 950; }
+
+    .offer-box { margin-top: 30px; padding: 30px; border-radius: var(--radius); background: linear-gradient(135deg, #0F0147, #2A4FF6); color: var(--white); box-shadow: var(--shadow); display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; }
+    .offer-box h3 { font-family: var(--font-head); font-size: 34px; margin-bottom: 8px; }
+    .offer-box p { color: rgba(255,255,255,.78); font-size: 16px; }
+
+    .work-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .work-card { min-height: 240px; }
+    .work-card h3 { font-size: 25px; }
+
+    .decision-strip { display: grid; gap: 14px; margin-top: 26px; }
+    .strip-row { display: grid; grid-template-columns: 160px 1fr; gap: 18px; align-items: center; padding: 20px 22px; border-radius: 20px; background: var(--paper); border: 1px solid var(--line); }
+    .strip-row strong { color: var(--brand); font-family: var(--font-head); font-size: 22px; }
+    .strip-row span { color: var(--muted); font-size: 16.5px; }
+    .decision-abstract { position: relative; min-height: 430px; border-radius: var(--radius); background: linear-gradient(145deg, #fff, #F7F9FC); border: 1px solid var(--line); box-shadow: var(--shadow-soft); overflow: hidden; }
+    .decision-abstract img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .decision-abstract::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(255,255,255,.18), transparent 48%, rgba(15,1,71,.04)); }
+
+    .why-wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .why-card { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.13); box-shadow: none; }
+    .why-card h3 { color: var(--white); }
+    .why-card p { color: rgba(255,255,255,.72); }
+    .why-card .card-num { background: rgba(92,225,230,.14); color: var(--cyan); }
+
+    .sample-box { margin-top: 42px; padding: 34px; border-radius: var(--radius); background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); display: grid; grid-template-columns: 1fr auto; gap: 22px; align-items: center; }
+    .sample-box h3 { font-family: var(--font-head); font-size: 32px; color: var(--white); margin-bottom: 8px; }
+    .sample-box p { color: rgba(255,255,255,.72); font-size: 16px; }
+
+    .contact-section { padding: 96px 0; background: linear-gradient(180deg, #fff, var(--paper)); }
+    .contact-panel { display: grid; grid-template-columns: .9fr 1.1fr; gap: 50px; align-items: start; }
+    .contact-text { padding-top: 22px; }
+    .contact-text h3 { font-family: var(--font-head); color: var(--brand); font-size: 46px; line-height: 1.25; margin-bottom: 16px; }
+    .contact-text p { color: var(--muted); font-size: 18px; line-height: 2; }
+    .form-card { padding: 36px; border-radius: var(--radius); background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .form-card h3 { font-family: var(--font-head); color: var(--brand); font-size: 32px; margin-bottom: 22px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .field { display: grid; gap: 8px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { color: var(--brand); font-size: 13px; font-weight: 950; }
+    .field input, .field textarea { width: 100%; border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; background: var(--paper); color: var(--text); font-size: 15px; outline: none; transition: border-color var(--ease), box-shadow var(--ease), background var(--ease); }
+    .field textarea { min-height: 150px; resize: vertical; }
+    .field input:focus, .field textarea:focus { border-color: var(--blue); background: var(--white); box-shadow: 0 0 0 4px rgba(42,79,246,.10); }
+    .submit-btn { margin-top: 20px; border: 0; background: var(--brand); color: var(--white); min-height: 58px; border-radius: var(--radius-pill); padding: 0 34px; font-weight: 950; cursor: pointer; transition: transform var(--ease), box-shadow var(--ease); box-shadow: 0 14px 32px rgba(15,1,71,0.18); }
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 18px 44px rgba(15,1,71,0.24); }
+
+    .footer { background: var(--brand); color: var(--white); padding: 76px 0 34px; position: relative; overflow: hidden; }
+    .footer::before { content: ""; position: absolute; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(92,225,230,0.12), transparent 66%); left: -170px; top: -140px; }
+    .footer-grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1.4fr 0.75fr 0.75fr 0.9fr; gap: 54px; padding-bottom: 54px; border-bottom: 1px solid rgba(255,255,255,0.10); }
+    .footer-brand { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+    .footer-brand .brand-mark { width: 110px; height: 110px; }
+    .footer-brand .brand-mark img { width: 110px; height: 110px; }
+    .footer-brand .brand-name { color: var(--white); }
+    .footer-brand .brand-sub { color: var(--cyan); }
+    .footer p { color: rgba(255,255,255,0.72); font-size: 15.5px; line-height: 2; max-width: 430px; }
+    .footer h4 { font-family: var(--font-head); font-size: 26px; margin-bottom: 20px; position: relative; padding-bottom: 12px; }
+    .footer h4::after { content: ""; position: absolute; bottom: 0; right: 0; width: 58px; height: 2px; background: var(--cyan); }
+    .footer ul { list-style: none; display: grid; gap: 12px; color: rgba(255,255,255,0.72); font-size: 15px; }
+    .footer a:hover { color: var(--cyan); }
+    .footer-bottom { position: relative; z-index: 2; padding-top: 28px; display: flex; justify-content: space-between; gap: 20px; color: rgba(255,255,255,0.52); font-size: 13px; }
+    .float-contact { position: fixed; left: 24px; bottom: 24px; z-index: 45; width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; background: var(--brand); color: var(--white); box-shadow: 0 18px 42px rgba(15,1,71,0.30); font-weight: 950; transition: transform var(--ease), background var(--ease); }
+    .float-contact:hover { transform: translateY(-3px) scale(1.03); background: var(--ink); }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 700ms ease, transform 700ms ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 1080px) {
+      .nav-links, .header-cta { display: none; }
+      .menu-btn { display: flex; }
+      .brand { min-width: 0; }
+      .hero-layout, .two-col, .contact-panel { grid-template-columns: 1fr; gap: 42px; }
+      .abstract-hero { min-height: 500px; }
+      .cards-3, .why-wrap, .cost-grid { grid-template-columns: 1fr; }
+      .work-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .offer-box, .sample-box { grid-template-columns: 1fr; }
+      .abstract-panel, .decision-abstract, .problem-visual { min-height: 410px; }
+    }
+    @media (max-width: 720px) {
+      .container { width: min(100% - 28px, var(--container)); }
+      .nav { height: 88px; }
+      .brand { gap: 10px; }
+      .brand-mark, .brand-mark img { width: 68px; height: 68px; }
+      .brand-name { font-size: 26px; }
+      .brand-sub { font-size: 9px; }
+      .hero { min-height: auto; }
+      .hero-layout { padding: 64px 0 72px; }
+      .hero h1 { font-size: 39px; }
+      .hero-sub { font-size: 20px; }
+      .hero-support, .hero-small { font-size: 14px; }
+      .btn { width: 100%; min-height: 56px; }
+      .abstract-hero { min-height: 350px; margin-top: -10px; }
+      .hero-art { min-height: 310px; }
+      .section-art, .dark-art, .problem-visual, .decision-abstract, .abstract-panel { min-height: 320px; }
+      .section { padding: 74px 0; }
+      .section-title { font-size: 34px; }
+      .section-copy, .center-head p, .service-intro { font-size: 18px; }
+      .service-card h3, .work-card h3, .why-card h3 { font-size: 27px; }
+      .service-card p, .work-card p, .why-card p, .strip-row span { font-size: 17px; }
+      .work-grid { grid-template-columns: 1fr; }
+      .strip-row { grid-template-columns: 1fr; gap: 8px; padding: 22px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-card { padding: 28px; border-radius: 24px; }
+      .contact-text h3 { font-size: 34px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; }
+      .float-contact { width: 54px; height: 54px; left: 18px; bottom: 18px; }
+      .problem-visual { min-height: 360px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="ذا لينس">
+        <span class="brand-mark"><img src="https://raw.githubusercontent.com/alghamdiaag/thelens-logo/main/the%20lens%20%D8%A8%D8%AF%D9%88%D9%86%20%D8%AE%D9%84%D9%81%D9%8A%D8%A9.svg" alt="شعار ذا لينس" /></span>
+        <span class="brand-word"><span class="brand-name">ذا لينس</span><span class="brand-sub">أبحاث ووضوح للقرار</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#about">عن ذا لينس</a>
+        <a href="#service">الخدمة</a>
+        <a href="#work">كيف نعمل</a>
+        <a href="#moments">متى تحتاجنا</a>
+        <a href="#contact-form">تواصل</a>
+      </nav>
+      <a class="header-cta" href="#contact-form">اختبر قرارك قبل الالتزام</a>
+      <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about" onclick="toggleMenu()">عن ذا لينس</a>
+      <a href="#service" onclick="toggleMenu()">الخدمة</a>
+      <a href="#work" onclick="toggleMenu()">كيف نعمل</a>
+      <a href="#moments" onclick="toggleMenu()">متى تحتاجنا</a>
+      <a href="#contact-form" onclick="toggleMenu()">تواصل</a>
+      <a class="header-cta" style="display:flex;width:100%;margin-top:8px" href="#contact-form" onclick="toggleMenu()">اختبر قرارك قبل الالتزام</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-layout">
+        <div class="hero-content reveal">
+          <div class="eyebrow">ذا لينس | وضوح قبل البناء والاستثمار</div>
+          <h1>لا تبنِ MVP أو قراراً استثمارياً على افتراض لم يُختبر.</h1>
+          <p class="hero-sub">نساعد المؤسسين، المستثمرين، وفرق الابتكار في السعودية على حسم سؤال واحد قبل الالتزام: هل هذه الفرصة تستحق البناء، التمويل، التوسع، أم يجب إيقافها أو إعادة توجيهها؟</p>
+          <p class="hero-support">مذكرة قرار مركزة تكشف أين يوجد الدليل، أين تبدأ الفرضية، وما الخطوة التالية الأقل مخاطرة.</p>
+          <p class="hero-small">أغلب الهدر لا يبدأ أثناء التنفيذ، بل قبله: حين يصبح الرأي خطة، والافتراض ميزانية.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact-form">احصل على تشخيص قرار أولي</a>
+            <a class="btn btn-secondary" href="The-Lens-Sample-Decision-Memo.pdf" download>اطلع على نموذج التقرير</a>
+          </div>
+          <div class="hero-note"><span></span>لا نبيع تقريراً طويلاً. نبيع قدرة أعلى على قول: نكمل، نغيّر، أو نوقف.</div>
+        </div>
+        <div class="abstract-hero reveal" aria-hidden="true">
+          <figure class="brand-art hero-art">
+            <img src="assets/the-lens-hero-abstract.png" alt="تصور تجريدي من ذا لينس يحول الإشارات المتناثرة إلى اتجاه واضح" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="risk">
+      <div class="container two-col">
+        <div class="risk-card reveal">
+          <div class="section-label">تكلفة القرار الخاطئ</div>
+          <h3>كم يكلفك قرار مبني على افتراض؟</h3>
+          <p>القرار الخاطئ لا يكلفك قيمة التطوير فقط. يكلفك وقت الفريق، ثقة أصحاب المصلحة، سرعة الدخول للسوق، وربما فرصة كان يمكن اكتشافها قبل البناء.</p>
+          <div class="cost-grid">
+            <div class="cost-item"><strong>MVP بلا تحقق</strong><span>يبني الفريق منتجاً لا يثبت الحاجة الحقيقية.</span></div>
+            <div class="cost-item"><strong>استثمار بلا فهم كافٍ</strong><span>تبدو الفرصة واعدة على الورق، لكنها ضعيفة أمام واقع العميل.</span></div>
+            <div class="cost-item"><strong>ابتكار بلا قرار واضح</strong><span>تكثر الورش والمخرجات، لكن لا يوجد منطق قرار قابل للتنفيذ.</span></div>
+          </div>
+        </div>
+        <div class="problem-visual reveal" aria-hidden="true">
+          <img src="assets/the-lens-decision-cost-abstract.png" alt="تصور تجريدي يوضح انتقال الفرضيات المتناثرة إلى خريطة قرار أوضح" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-white" id="about">
+      <div class="container two-col">
+        <div class="abstract-panel reveal" aria-hidden="true">
+          <img src="assets/the-lens-opportunity-map-abstract.png" alt="خريطة فرص تجريدية تمثل كشف الأنماط الخفية قبل الالتزام" />
+        </div>
+        <div class="reveal">
+          <div class="section-label">عن ذا لينس</div>
+          <h2 class="section-title">طبقة قرار قبل أن تخسر وقتاً ومالاً على فرضية ضعيفة.</h2>
+          <div class="section-copy">
+            <p>ذا لينس ليست شركة أبحاث تقليدية، وليست جهة تبيع تقارير عامة. نحن نساعدك على فهم القرار الذي يسبق البناء، التوسع، التحول، الاستثمار، أو تبني فرصة جديدة.</p>
+            <p>نحوّل الضبابية إلى منطق قرار: ما الذي نعرفه؟ ما الذي ما زال فرضية؟ وما الذي يجب أن يحدث قبل أن تلتزم أكثر؟</p>
+          </div>
+          <div class="sharp-line">لا نبدأ من الحل. نبدأ من السؤال الذي قد يغيّر المسار كله.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="service">
+      <div class="container">
+        <div class="center-head reveal">
+          <div class="section-label">الخدمة الأساسية</div>
+          <h2 class="section-title">مذكرة قرار من ذا لينس.</h2>
+          <p>مخرج تنفيذي مركز يساعدك على حسم: هل نبني؟ هل نغيّر؟ هل نواصل؟ هل نوقف؟ وما الذي يجب التحقق منه قبل الخطوة التالية.</p>
+        </div>
+        <div class="service-intro reveal">
+          العميل لا يشتري مذكرة. هو يشتري القدرة على قول: <strong>نكمل، نغيّر، أو نوقف</strong> — بثقة أعلى ومخاطرة أقل.
+        </div>
+        <div class="cards-3">
+          <article class="service-card reveal"><div><div class="card-num">01</div><h3>ما الذي توضحه؟</h3><p>من العميل الذي يجب فهمه، ما الاحتياج الأقوى، أين يفشل البديل الحالي، وما الدليل الذي يدعم القرار.</p></div></article>
+          <article class="service-card reveal"><div><div class="card-num">02</div><h3>ما القرار الذي تدعمه؟</h3><p>هل تبني؟ هل تغيّر الشريحة؟ هل تواصل؟ هل توقف؟ وما الاختبار الأقل تكلفة قبل الالتزام؟</p></div></article>
+          <article class="service-card reveal"><div><div class="card-num">03</div><h3>ما الذي تخرج به؟</h3><p>منطق قرار واضح، توصية تنفيذية، مخاطر يجب مراقبتها، وخطوة تحقق قابلة للتنفيذ فوراً.</p></div></article>
+        </div>
+        <div class="service-strip reveal">
+          <span>مذكرة تنفيذية</span>
+          <span>وضوح حول العميل والاحتياج</span>
+          <span>توصية قرار</span>
+          <span>مسار تحقق تالي</span>
+          <span>تقليل مخاطرة الالتزام</span>
+        </div>
+        <div class="offer-box reveal">
+          <div>
+            <h3>مذكرة قرار مركزة قبل الالتزام الكبير.</h3>
+            <p>مصممة للفرق التي لا تحتاج مزيداً من الكلام العام، بل تحتاج وضوحاً: ما القرار الصحيح الآن؟ وما الدليل الناقص قبل أن نتحرك؟</p>
+          </div>
+          <a class="btn btn-primary" href="#contact-form">اطلب تشخيص القرار</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-white" id="moments">
+      <div class="container two-col">
+        <div class="reveal">
+          <div class="section-label">لحظات القرار</div>
+          <h2 class="section-title">متى تصبح ذا لينس مفيدة لك؟</h2>
+          <div class="section-copy"><p>عندما يكون القرار أكبر من مجرد رأي، وأصغر من أن تنتظر فشله في السوق.</p></div>
+          <div class="decision-strip">
+            <div class="strip-row"><strong>قبل بناء MVP</strong><span>ما الذي يجب أن يثبته المنتج الأول فعلاً؟ وما الذي لا يستحق البناء الآن؟</span></div>
+            <div class="strip-row"><strong>بعد إطلاق منتج</strong><span>هل نكمل، نعيد التموضع، أم نغيّر المسار بناءً على واقع العميل؟</span></div>
+            <div class="strip-row"><strong>قبل استثمار</strong><span>هل هذه الفرصة مبنية على احتياج قوي وسلوك حقيقي أم على سردية جميلة؟</span></div>
+            <div class="strip-row"><strong>قبل اختيار فرصة</strong><span>أي مسار يستحق وقت الفريق والموارد؟ وأي مسار يجب قتله مبكراً؟</span></div>
+          </div>
+        </div>
+        <div class="decision-abstract reveal" aria-hidden="true">
+          <img src="assets/the-lens-process-abstract.png" alt="رحلة تجريدية من سؤال غامض إلى قرار أكثر ثقة" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="work">
+      <div class="container">
+        <div class="center-head reveal">
+          <div class="section-label">كيف نعمل</div>
+          <h2 class="section-title">من سؤال ضبابي إلى قرار قابل للتنفيذ.</h2>
+          <p>نختصر الضوضاء ونركز على القرار الحقيقي: ما الذي يجب أن تعرفه قبل أن تلتزم أكثر؟</p>
+        </div>
+        <div class="work-grid">
+          <article class="work-card reveal"><div class="card-num">01</div><h3>تحديد القرار</h3><p>نحوّل النقاش العام إلى سؤال قرار واضح يمكن تحليله.</p></article>
+          <article class="work-card reveal"><div class="card-num">02</div><h3>تفكيك الفرضيات</h3><p>نفرز ما نعرفه، ما نفترضه، وما قد يغيّر القرار لو ثبت عكسه.</p></article>
+          <article class="work-card reveal"><div class="card-num">03</div><h3>قراءة العميل والبدائل</h3><p>نبحث عن الاحتياج، السلوك، البدائل الحالية، ومناطق الألم غير المحسومة.</p></article>
+          <article class="work-card reveal"><div class="card-num">04</div><h3>توصية ومسار تحقق</h3><p>نقدم منطق قرار وتوصية واضحة وخطوة تحقق عملية تقلل المخاطرة.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="why">
+      <div class="container">
+        <div class="center-head reveal">
+          <div class="section-label">لماذا الآن؟</div>
+          <h2 class="section-title">لأن التأخر في الاختبار أغلى من الاختبار نفسه.</h2>
+          <p>كل أسبوع يُصرف على فرضية ضعيفة يجعل قرار التراجع أصعب، ويحوّل الرأي إلى التزام سياسي داخل الفريق.</p>
+        </div>
+        <div class="why-wrap">
+          <article class="why-card reveal"><div class="card-num">01</div><h3>تقلل الهدر</h3><p>بدل أن تعرف الخطأ بعد البناء، تعرف أين قد يكون الخلل قبل الالتزام.</p></article>
+          <article class="why-card reveal"><div class="card-num">02</div><h3>تحمي القرار</h3><p>تمنح الفريق لغة مشتركة مبنية على الدليل لا على قوة الصوت أو الحماس.</p></article>
+          <article class="why-card reveal"><div class="card-num">03</div><h3>تسرّع الحركة</h3><p>حين يتضح القرار، تقل الاجتماعات، وتصبح الخطوة التالية قابلة للتنفيذ.</p></article>
+        </div>
+        <div class="sample-box reveal">
+          <div>
+            <h3>شاهد شكل المخرج قبل أن تبدأ.</h3>
+            <p>حمّل نموذجاً مختصراً يوضح بنية مذكرة القرار: السؤال، الفرضيات، قراءة العميل، المخاطر، والتوصية.</p>
+          </div>
+          <a class="btn btn-primary" href="The-Lens-Sample-Decision-Memo.pdf" download>اطلع على نموذج التقرير</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact-form">
+      <div class="container contact-panel">
+        <div class="contact-text reveal">
+          <div class="section-label">تواصل معنا</div>
+          <h3>شاركنا القرار الذي تريد حسمه</h3>
+          <p>اكتب القرار الذي يشغل الفريق الآن. سنساعدك على تحويله إلى سؤال أوضح يمكن تحليله قبل الالتزام.</p>
+          <div class="sharp-line">مثال: هل نبني؟ هل نغيّر الشريحة؟ هل نستثمر؟ هل نوقف هذا المسار؟</div>
+        </div>
+        <form class="form-card reveal" onsubmit="sendEmail(event)">
+          <h3>أرسل القرار</h3>
+          <div class="form-grid">
+            <div class="field"><label>الاسم</label><input id="name" type="text" placeholder="اسمك" required /></div>
+            <div class="field"><label>البريد الإلكتروني</label><input id="email" type="email" placeholder="name@company.com" required /></div>
+            <div class="field full"><label>الجهة / الشركة</label><input id="company" type="text" placeholder="اسم الجهة" /></div>
+            <div class="field full"><label>ما القرار الذي تفكر فيه؟</label><textarea id="decision" placeholder="مثال: هل نبني MVP؟ هل نغيّر الشريحة؟ هل نستثمر في هذه الفرصة؟ هل نوقف هذا المسار؟" required></textarea></div>
+          </div>
+          <button class="submit-btn" type="submit">إرسال طلب التشخيص</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <span class="brand-mark"><img src="https://raw.githubusercontent.com/alghamdiaag/thelens-logo/main/the%20lens%20%D8%A8%D8%AF%D9%88%D9%86%20%D8%AE%D9%84%D9%81%D9%8A%D8%A9.svg" alt="شعار ذا لينس" /></span>
+            <span class="brand-word"><span class="brand-name">ذا لينس</span><span class="brand-sub">أبحاث ووضوح للقرار</span></span>
+          </div>
+          <p>وضوح للقرار في الشركات الناشئة والابتكار والاستثمار. نساعدك على اختبار ما يستحق الالتزام قبل أن يتحول الافتراض إلى ميزانية.</p>
+        </div>
+        <div><h4>روابط</h4><ul><li><a href="#about">عن ذا لينس</a></li><li><a href="#service">الخدمة</a></li><li><a href="#work">كيف نعمل</a></li><li><a href="#moments">متى تحتاجنا</a></li><li><a href="#contact-form">تواصل</a></li></ul></div>
+        <div><h4>المخرجات</h4><ul><li><a href="The-Lens-Sample-Decision-Memo.pdf" download>نموذج التقرير</a></li><li>مذكرة قرار</li><li>مسار تحقق</li></ul></div>
+        <div><h4>تواصل</h4><ul><li>الرياض، شارع الضباب</li><li>المملكة العربية السعودية</li><li><a href="mailto:ali@thelens.work">ali@thelens.work</a></li><li><a href="tel:+966541998112">0541998112</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 ذا لينس. جميع الحقوق محفوظة.</span><span>صُمم لمساعدة الفرق في السعودية والخليج على اتخاذ قرارات أوضح قبل الالتزام.</span></div>
+    </div>
+  </footer>
+
+  <a class="float-contact" href="#contact-form" aria-label="تواصل مع ذا لينس">↗</a>
+
+  <script>
+    function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach((el, i) => { el.style.transitionDelay = `${Math.min(i * 45, 280)}ms`; observer.observe(el); });
+    function sendEmail(event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const company = document.getElementById('company').value.trim();
+      const decision = document.getElementById('decision').value.trim();
+      const subject = encodeURIComponent('طلب تشخيص قرار — ذا لينس');
+      const body = encodeURIComponent(`الاسم: ${name}\nالبريد: ${email}\nالجهة: ${company}\n\nالقرار المطلوب حسمه:\n${decision}`);
+      window.location.href = `mailto:ali@thelens.work?subject=${subject}&body=${body}`;
+    }
+  </script>
+</body>
+</html>
